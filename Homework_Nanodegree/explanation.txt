@@ -1,0 +1,42 @@
+Question 1: 
+
+The idea is to find out sorted substring of s and compare with sorted string t. After sorted, if substring of s equals to t, then we can say that some anagram of t is a substring of s and return True; if substring of s not equals to t, we can say that there¡¯s none anagram of t is a substring of s and return False.
+
+Time complexity: suppose the length of s is n and length of t is m, since the sorted() function in python uses quick sort, the time complexity of sort t should be mlog(m), and worst case of the for loop to loop over substring of s needs n-m+1 iterations, therefore the time complexity of first question should be mlog(m)*(n-m+1) + mlog(m), which should belong to O(n^2log(n))
+Space complexity: to solve the question, we only need two m length list to store sorted t and sorted substring of s, therefore the space complexity should be O(n)
+
+Question 2:
+
+Check every possible palindromic substring and remeber the index for head and tail of the panlindromic substring. Save these strings to a list. Compute length of each possible palindromic substring and save it to a dictionary with lengths as keys and indexes of head and tail of that string as corresponding value. Find the maximum length and return its correspoinding indexes and according to the indexes, return corresponding substring, which is the longest palidromic substring.
+
+Time complexity: I used a nested foor loop to find each possible palindromic substring, the time complexity of which is roughly nlog(n), besides I also used another for loop to loop over all possible palindromic substring, for the worst case, the length of all possible palindromic substrings could be roughly nlog(n), therefore the time complexity of question 2 could be O(nlog(n))
+Space complexity: I used a list to store all possible palindromic substrings and used a dictionary to store their length, or the worst case, the length of all possible palindromic substrings could be roughly nlog(n), therefore the space complexity of question 2 shouldbe O(nlog(n))
+
+
+
+Question 3:
+
+First, convert the G to a list which stores edges. Then, by applying Kruskal's algorithm we can get minimun spanning tree. The general idea is to include edges by weights from small weights but exclude any cycle. In order to exclude cycle, we can keep track of each vertice in a list of lists, called ¡®vertices¡¯ in my program. Everytime an edge had been included, we merge two vertices; Once a new edge connected two vertices within the same list in ¡®vertices¡¯, it would be exclude. Untill the length of ¡®vertices¡¯ equals to 1, which means all vertices had been visited, we stopped. Then we use the edges got from the algorithm and convert it to output dictionary. 
+
+Suppose n is the number of edges and m is the number of vertices:
+Convert G to a list of edges need O(n) time and O(n) space. Sort the edges list need O(n*log(n)) time and O(n) space. Kruskal¡¯s algorithm need O(n*m) time and O(m) space. Finally, convert edges to a dictionary need O(n) time and O(m) space. So overall, time complexity and space complexity are:
+
+Time complexity: O(n*m)
+Space complexity: O(n)
+
+
+
+Question 4:
+
+First, instead of using matrix directly, I used the matrix to build a BST since it¡¯s much easier to use the hierarchy structure of tree to find the least common ancestor. Then the question can be easily solved by taking the advantage of BST that all left children are smaller than root node and all right children are greater than root node. If one of the nodes is smaller than root node while the other one is greater than root node, then the root node would be the least common ancestor of these two nodes; if both nodes are greater(smaller) than root node, than we can set the right(left) child of root node to be the new root and repeat this process until find their least common ancestor. To implement the idea discussed above, we can use a recursive function.
+
+Time complexity: to build the BST using matrix, the time complexity should be linear O(n), to find whether both n1 and n2 are in the BST I used BST search method, the time complexity of which is O(log(n)), finally to recursively search the least common ancestor of n1 and n2, the time complexity would be O(log(n)), therefore the time complexity of question 4 is O(n)
+Space complexity: constant, O(1)
+
+
+Question 5:
+
+Under the linked list structure, adding new node by pushing it into the ¡®head¡¯ position. Use ¡®count¡¯ to help to find out the position of the node we wanted and return the value of that node At the same time, stop reading next node.
+
+Time complexity: O(N), N is the length of the linked list
+Space complexity: constant, O(1)
